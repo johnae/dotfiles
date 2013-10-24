@@ -4,6 +4,7 @@
 COMPLETION_WAITING_DOTS=true
 unsetopt correct_all
 unsetopt correct
+DISABLE_CORRECTION="true"
 
 # Enable VI mode
 set -o vi
