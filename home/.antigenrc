@@ -1,0 +1,31 @@
+[[ ! -d ~/.antigen.git ]] && \
+  git clone https://github.com/zsh-users/antigen.git ~/.antigen.git
+
+source ~/.antigen.git/antigen.zsh
+
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundles <<EOBUNDLES
+
+git
+git-extras
+
+bundler
+
+brew
+
+# More tools
+vagrant
+tmux
+
+jimhester/per-directory-history
+zsh-users/zsh-syntax-highlighting
+colored-man
+
+EOBUNDLES
+
+antigen theme robbyrussell
+
+# Tell antigen that you're done.
+antigen apply
