@@ -10,7 +10,7 @@ fi
 alias homeshick="source $HOME/.homesick/repos/homeshick/bin/homeshick.sh"
 
 # source it here so certain variables are available early
-test -d ~/.secrets && source ~/.secrets 
+test -e ~/.secrets && source ~/.secrets 
 
 unset MAILCHECK
 
