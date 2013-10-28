@@ -5,4 +5,4 @@ if [[ $RUNNING_SHELL = "bash" ]]; then
   test -e /usr/local/etc/bash_completion.d/task_completion.sh && source /usr/local/etc/bash_completion.d/task_completion.sh
 fi
 ## gnu-getopt
-which brew && export PATH="$(brew --prefix gnu-getopt)/bin":$PATH
+which brew >/dev/null && export PATH="$(brew --prefix gnu-getopt)/bin":$PATH
