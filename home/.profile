@@ -48,7 +48,10 @@ IN="\[\033[0m\]"
 export EDITOR='vim'
 
 export USE_JAVA_VERSION=${USE_JAVA_VERSION:-"1.7"}
-export JAVA_HOME=`/usr/libexec/java_home -v $USE_JAVA_VERSION`
+if [[ -e /usr/libexec/java_home ]]; then
+  ## OS X only
+  export JAVA_HOME=`/usr/libexec/java_home -v $USE_JAVA_VERSION`
+fi
 
 ## Terminal colours (after installing GNU coreutils)
 NM="\[\033[0;38m\]" #means no background and white lines
