@@ -11,7 +11,7 @@ set -o vi
 bindkey -v
 
 # Antigen for plugins
-source ~/.antigenrc
 source ~/.profile
+source ~/.antigenrc
 
 #zprof
