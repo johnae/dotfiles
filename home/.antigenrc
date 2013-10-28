@@ -28,7 +28,7 @@ colored-man
 EOBUNDLES
 
 antigen theme robbyrussell
-PROMPT="%{$fg_bold[cyan]%}%n@%M $PROMPT"
+PROMPT='%{$fg_bold[green]%}%n@%M '$PROMPT
 
 # Tell antigen that you're done.
 antigen apply
