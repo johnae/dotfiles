@@ -7,7 +7,9 @@ else
   export RUNNING_SHELL="unknown"
 fi
 
-alias homeshick="source $HOME/.homesick/repos/homeshick/bin/homeshick.sh"
+#alias homeshick="source $HOME/.homesick/repos/homeshick/bin/homeshick.sh"
+
+source $HOME/.homesick/repos/homeshick/homeshick.sh
 
 # source it here so certain variables are available early
 test -e ~/.secrets && source ~/.secrets 
