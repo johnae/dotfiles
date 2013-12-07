@@ -6,11 +6,7 @@ if [[ "$OS" != "Darwin" ]]; then
       SOCK="/tmp/ssh-agent-$USER-tmux"
       if test $SSH_AUTH_SOCK && [[ "$SSH_AUTH_SOCK" != "$SOCK" ]]; then
         rm -f $SOCK
-        chgrp root $SSH_AUTH_SOCK
         ln -sf $SSH_AUTH_SOCK $SOCK
-        chgrp root $SOCK
-        chmod g+rwx $SOCK
-        chmod g+rwx $SSH_AUTH_SOCK
         export SSH_AUTH_SOCK=$SOCK
       fi
       if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
