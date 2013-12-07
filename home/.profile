@@ -7,6 +7,8 @@ else
   export RUNNING_SHELL="unknown"
 fi
 
+test -e /etc/profile.d/rbenv.sh && source /etc/profile
+
 #alias homeshick="source $HOME/.homesick/repos/homeshick/bin/homeshick.sh"
 
 source $HOME/.homesick/repos/homeshick/homeshick.sh
