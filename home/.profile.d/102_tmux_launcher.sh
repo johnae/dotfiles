@@ -1,7 +1,7 @@
 OS=`uname`
 if [[ "$OS" != "Darwin" ]]; then
   if [[ "$TERM" != "screen" ]]; then
-    if [[ ! -z "$SSH_TTY"]]; then
+    if [[ ! -z "$SSH_TTY" ]]; then
       if [[ -z "$SSH_AUTH_SOCK" ]]; then
         rm "$HOME/.ssh/.wrap_auth_sock"
         ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/.wrap_auth_sock"
