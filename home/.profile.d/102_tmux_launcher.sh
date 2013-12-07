@@ -3,6 +3,7 @@ if [[ "$OS" != "Darwin" ]]; then
   if [[ "$TERM" != "screen" ]]; then
     if [[ ! -z "$SSH_TTY" ]]; then
       if [[ -z "$SSH_AUTH_SOCK" ]]; then
+        echo "Auth socket is $SSH_AUTH_SOCK, linking..."
         rm "$HOME/.ssh/.wrap_auth_sock"
         ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/.wrap_auth_sock"
       fi
