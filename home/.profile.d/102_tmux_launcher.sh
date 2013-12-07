@@ -14,7 +14,7 @@ if [[ "$OS" != "Darwin" ]]; then
       if tmux has-session -t $WHOAMI 2>/dev/null; then
         exec tmux -2 attach-session -t $WHOAMI
       else
-        exec tmux -2 new-session -s $WHOAMI
+        tmux -2 new-session -s $WHOAMI
       fi
     fi
   fi
