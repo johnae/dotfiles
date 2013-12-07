@@ -10,7 +10,6 @@ if [[ "$OS" != "Darwin" ]]; then
       fi
     fi
     WHOAMI=$(whoami)
-    unset TMUX
     if tmux has-session -t $WHOAMI 2>/dev/null; then
       tmux -2 attach-session -t $WHOAMI
     else
