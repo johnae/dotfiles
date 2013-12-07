@@ -8,6 +8,14 @@ if [[ "$OS" != "Darwin" ]]; then
         rm "~/.ssh/.wrap_auth_sock"
         ln -sf "$SSH_AUTH_SOCK" "~/.ssh/.wrap_auth_sock"
       fi
+      if [[ ! -S "$SSH_AUTH_SOCK" ]]; then
+        `ssh-agent -a $SSH_AUTH_SOCK` > /dev/null >&1
+        echo $SSH_AGENT_PID > ~/.ssh/.auth_pid
+      fi
+      if [[ -z $SSH_AGENT_PID ]]; then
+        export SSH_AGENT_PID=`cat ~/.ssh/.auth_pid`
+      fi
+      ssh-add 2>/dev/null
       export SSH_AUTH_SOCK="~/.ssh/.wrap_auth_sock"
     fi
     WHOAMI=$(whoami)
