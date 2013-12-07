@@ -6,7 +6,7 @@ if [[ "$OS" != "Darwin" ]]; then
         rm "$HOME/.ssh/.wrap_auth_sock"
         ln -sf "$SSH_AUTH_SOCK" "$HOME/.ssh/.wrap_auth_sock"
       fi
-      export SSH_AUTH_SOCK="$HOME/.ssh/.auth_socket"
+      export SSH_AUTH_SOCK="$HOME/.ssh/.wrap_auth_sock"
     fi
     WHOAMI=$(whoami)
     if tmux has-session -t $WHOAMI 2>/dev/null; then
