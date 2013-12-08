@@ -5,7 +5,7 @@ source ~/.antigen.git/antigen.zsh
 
 antigen use oh-my-zsh
 
-which bundle 2>&1 >/dev/null && antigen bundle bundler
+#which bundle 2>&1 >/dev/null && antigen bundle bundler
 
 # Bundles from the default repo (robbyrussell's oh-my-zsh).
 antigen bundles <<EOBUNDLES
