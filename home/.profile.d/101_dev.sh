@@ -1,4 +1,5 @@
 devenv(){
+  TMUX=
   for project in $(echo -n $DEV_PROJECTS); do
     tmux ls | grep $project && continue
     tmux set-option default-path $DEVDIR/$project
