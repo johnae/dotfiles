@@ -9,10 +9,10 @@ if [[ "$OS" != "Darwin" ]]; then
         export SSH_AUTH_SOCK=$SOCK
       fi
     fi
-    WHOAMI=$(whoami)
     if [[ $SHLVL != "2" ]]; then
-      if tmux has-session -t $WHOAMI 2>/dev/null; then
-        exec tmux -2 attach-session -t $WHOAMI
+      if tmux has-session 2>/dev/null; then
+        #exec tmux -2 attach-session -t $WHOAMI
+        exec tmux -2 attach
       else
         tmux -2 new-session -s $WHOAMI
       fi
