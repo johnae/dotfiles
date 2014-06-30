@@ -14,8 +14,8 @@ if [[ "$OS" != "Darwin" ]]; then
         #exec tmux -2 attach-session -t $WHOAMI
         exec tmux -2 attach
       else
-        devenv
-        #tmux -2 new-session -s scratch
+        #devenv
+        tmux -2 new-session -s scratch
       fi
     fi
   fi
