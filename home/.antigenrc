@@ -12,6 +12,9 @@ antigen bundles <<EOBUNDLES
 
 git
 git-extras
+docker
+#git-flow
+
 # git-flow-avh
 # bundler
 
@@ -21,9 +24,13 @@ brew
 vagrant
 tmux
 
-jimhester/per-directory-history
+#jimhester/per-directory-history
 zsh-users/zsh-syntax-highlighting
 colored-man
+gnu-utils
+history
+rbenv
+
 
 EOBUNDLES
 
