@@ -21,6 +21,33 @@ zle -N self-insert url-quote-magic
 zstyle -e :urlglobber url-other-schema '[[ $__remote_commands[(i)$words[1]] -le ${#__remote_commands} ]] && reply=("*") || reply=(http https ftp)'
 
 #zprof
+chpwd() {
+  #echo "<$OLDPWD|$PWD>"
+  if [ -n "$TMUX" ]; then
+    tmux rename-window ${PWD//*\//}
+  fi
+}
+
+#precmd() {
+#  if [ -n "$TMUX" ]; then
+#    tmux rename-window ${PWD//*\//}
+#  fi
+#}
+#
+#preexec() {
+#  if [ -n "$TMUX" ]; then
+#    cmd=$(echo "$1" | awk '{print $1}')
+#    tmux rename-window ${PWD//*\//}/${cmd}
+#  fi
+#}
+
+#f() {
+#  if [ "$PWD" != "$LPWD" ]; then
+#    LPWD="$PWD"
+#    tmux rename-window ${PWD//*\//}
+#  fi
+#}
+#export PROMPT_COMMAND=f
 
 # Set up ssh-agent unless we're on OS X
 
