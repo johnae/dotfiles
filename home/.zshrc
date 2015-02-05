@@ -75,3 +75,5 @@ else
   start_agent;
 fi
 fi
+
+eval "$(direnv hook zsh)"
