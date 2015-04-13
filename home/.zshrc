@@ -14,6 +14,9 @@ bindkey -v
 source ~/.profile
 source ~/.antigenrc
 
+# Ignore dupes in history
+setopt histignoredups
+
 # Automatically quote globs in URL and remote references
 __remote_commands=(scp rsync)
 autoload -U url-quote-magic
@@ -51,7 +54,7 @@ chpwd() {
 
 # Set up ssh-agent unless we're on OS X
 
-OS=`uname`
+OS=$(uname)
 if [[ "$OS" != "Darwin" ]]; then
   SSH_ENV="$HOME/.ssh/environment"
 
