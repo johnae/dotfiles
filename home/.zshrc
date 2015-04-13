@@ -15,7 +15,8 @@ source ~/.profile
 source ~/.antigenrc
 
 # Ignore dupes in history
-setopt histignoredups
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 
 # Automatically quote globs in URL and remote references
 __remote_commands=(scp rsync)
