@@ -64,7 +64,7 @@ if [[ "$OS" != "Darwin" ]]; then
     echo succeeded
     chmod 600 "${SSH_ENV}"
     . "${SSH_ENV}" > /dev/null
-    /usr/bin/ssh-add;
+    #/usr/bin/ssh-add;
   }
 
   # Source SSH settings, if applicable
