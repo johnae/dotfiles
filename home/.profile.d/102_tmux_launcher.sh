@@ -9,7 +9,7 @@ if [[ "$OS" != "Darwin" ]]; then
         export SSH_AUTH_SOCK=$SOCK
       fi
     #fi
-    if [[ $SHLVL != "2" ]]; then
+    if [[ $SHLVL != "2" && -z "$XDG_SESSION_TYPE" ]]; then
       if tmux has-session 2>/dev/null; then
         #exec tmux -2 attach-session -t $WHOAMI
         exec tmux -2 attach
