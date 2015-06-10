@@ -66,6 +66,7 @@ IN="\[\033[0m\]"
 
 
 if test -d ~/.profile.d ; then for profile in ~/.profile.d/*.sh ; do if test -x "$profile" ; then . "$profile" ; fi ; done ; unset profile ; fi
+if test -d ~/.profile.local.d ; then for profile in ~/.profile.local.d/*.sh ; do if test -x "$profile" ; then . "$profile" ; fi ; done ; unset profile ; fi
 
 ## for mosh
 export LC_CTYPE=en_US.UTF-8
