@@ -51,9 +51,9 @@ IN="\[\033[0m\]"
 
 export EDITOR='vim'
 
-export USE_JAVA_VERSION=${USE_JAVA_VERSION:-"1.7"}
 if [[ -e /usr/libexec/java_home ]]; then
   ## OS X only
+  export USE_JAVA_VERSION=${USE_JAVA_VERSION:-"1.8"}
   export JAVA_HOME=`/usr/libexec/java_home -v $USE_JAVA_VERSION`
 fi
 
