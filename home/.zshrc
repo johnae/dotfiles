@@ -10,6 +10,9 @@ DISABLE_CORRECTION="true"
 set -o vi
 bindkey -v
 
+# Enable history backward incremental search via CTRL-R
+bindkey "^R" history-incremental-search-backward
+
 # Antigen for plugins
 source ~/.profile
 source ~/.antigenrc
