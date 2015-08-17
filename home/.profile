@@ -51,9 +51,9 @@ IN="\[\033[0m\]"
 
 export EDITOR='vim'
 
-export USE_JAVA_VERSION=${USE_JAVA_VERSION:-"1.7"}
 if [[ -e /usr/libexec/java_home ]]; then
   ## OS X only
+  export USE_JAVA_VERSION=${USE_JAVA_VERSION:-"1.8"}
   export JAVA_HOME=`/usr/libexec/java_home -v $USE_JAVA_VERSION`
 fi
 
@@ -66,6 +66,7 @@ IN="\[\033[0m\]"
 
 
 if test -d ~/.profile.d ; then for profile in ~/.profile.d/*.sh ; do if test -x "$profile" ; then . "$profile" ; fi ; done ; unset profile ; fi
+if test -d ~/.profile.local.d ; then for profile in ~/.profile.local.d/*.sh ; do if test -x "$profile" ; then . "$profile" ; fi ; done ; unset profile ; fi
 
 ## for mosh
 export LC_CTYPE=en_US.UTF-8
