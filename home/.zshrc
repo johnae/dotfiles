@@ -13,6 +13,9 @@ bindkey -v
 # Enable history backward incremental search via CTRL-R
 bindkey "^R" history-incremental-search-backward
 
+# Enable history backward incremental search via CTRL-R
+bindkey "^F" history-incremental-search-forward
+
 # Antigen for plugins
 source ~/.profile
 source ~/.antigenrc
