@@ -52,13 +52,16 @@ chpwd() {
 #}
 
 #f() {
-#  if [ "$PWD" != "$LPWD" ]; then
-#    LPWD="$PWD"
-#    tmux rename-window ${PWD//*\//}
-#  fi
+#  #printf "AAAAA \033]2;%s\033\\" "${1:-$TMUX_PANE_TITLE}"
+#  #if [ "$PWD" != "$LPWD" ]; then
+#  #  LPWD="$PWD"
+#  #  tmux rename-window ${PWD//*\//}
+#  #fi
+#  tmux rename-window $(basename $PWD)
 #}
 #export PROMPT_COMMAND=f
 
+#export PROMPT_COMMAND
 # Set up ssh-agent unless we're on OS X
 
 OS=$(uname)
@@ -86,3 +89,6 @@ if [[ "$OS" != "Darwin" ]]; then
 fi
 
 eval "$(direnv hook zsh)"
+
+#export PS1=$PS1'$( [ -n $TMUX ] && tmux setenv -g TMUX_PWD_$(tmux display -p "#D" | tr -d %) $PWD && tmux rename-window $(basename $PWD))'
+export PS1=$PS1'$( [ -n $TMUX ] && tmux rename-window $(basename $PWD))'
