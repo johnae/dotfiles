@@ -27,7 +27,7 @@ tmux
 
 #jimhester/per-directory-history
 zsh-users/zsh-syntax-highlighting
-colored-man
+colored-man-pages
 gnu-utils
 history
 rbenv
