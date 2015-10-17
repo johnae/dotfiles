@@ -24,13 +24,13 @@ font pango:DejaVu Sans Mono 8
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Set keyboard to swedish macintosh always
-exec_always setxkbmap -layout se -variant mac
+#exec_always setxkbmap -layout se -variant mac
 
 # Map caps-lock to ctrl
 exec_always setxkbmap -option ctrl:nocaps
 
 # Map left alt to switch
-exec_always setxkbmap -option lv3:lalt_switch
+#exec_always setxkbmap -option lv3:lalt_switch
 
 # Just set a solid bg
 exec_always xsetroot -solid "#333333"
@@ -169,3 +169,5 @@ bar {
         status_command i3status
         #status_command /home/john/.i3/vpn-dev-status.sh
 }
+
+exec --no-startup-id nm-applet
