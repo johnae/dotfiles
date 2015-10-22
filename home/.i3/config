@@ -33,13 +33,17 @@ exec_always setxkbmap -option lv3:lalt_switch
 exec_always setxkbmap -layout se -variant mac
 
 # Just set a solid bg
-exec_always xsetroot -solid "#333333"
+# exec_always xsetroot -solid "#333333"
 
+exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal; exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html; workspace 2; exec gnome-terminal -x ssh john@localhost; exec pgadmin3; workspace 1'
 # Always start a terminal
-exec i3-sensible-terminal
+#exec i3-sensible-terminal
 
 # Always start chromium
-exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html
+#exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html
+
+# Always start a dev session
+#exec --no-startup-id i3-msg 'workspace 2; '
 
 floating_modifier $mod
 
@@ -176,16 +180,16 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+        # bindsym j resize shrink width 10 px or 10 ppt
+        # bindsym k resize grow height 10 px or 10 ppt
+        # bindsym l resize shrink height 10 px or 10 ppt
+        # bindsym semicolon resize grow width 10 px or 10 ppt
 
         # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
 
         # back to normal: Enter or Escape
         bindsym Return mode "default"
@@ -197,8 +201,7 @@ bindsym $mod+r mode "resize"
 ## touch pad, natural scrolling and no tap
 exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Tap Time" 0
 exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Scrolling Distance" -75, -75
-
-exec --no-startup-id feh --bg-fill "~/Pictures/dark_wallpaper.jpg"
+exec --no-startup-id feh --bg-fill ~/Pictures/dark_wallpaper.jpg
 
 exec --no-startup-id nm-applet
 exec gnome-settings-daemon 
