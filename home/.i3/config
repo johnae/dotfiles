@@ -24,13 +24,14 @@ font pango:DejaVu Sans Mono 8
 # font, it doesn’t scale on retina/hidpi displays.
 
 # Map caps-lock to ctrl
-exec_always setxkbmap -option ctrl:nocaps
+exec_always --no-startup-id "setxkbmap -layout se -option ctrl:nocaps,lv3:lalt_switch"
+exec_always --no-startup-id "sleep 2; setxkbmap -variant mac"
 
 # Map left alt to switch
-exec_always setxkbmap -option lv3:lalt_switch
+#exec_always setxkbmap -option lv3:lalt_switch
 
 # Set keyboard to swedish macintosh always
-exec_always setxkbmap -layout se -variant mac
+#exec_always setxkbmap -layout se -variant mac
 
 # Just set a solid bg
 # exec_always xsetroot -solid "#333333"
@@ -50,6 +51,15 @@ floating_modifier $mod
 # start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
+# start a chromium
+bindsym $mod+c exec chromium-browser
+
+# start pgadmin3
+bindsym $mod+p exec pgadmin3
+
+# start dev term
+bindsym $mod+m exec gnome-terminal -x ssh john@localhost
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -57,9 +67,9 @@ bindsym $mod+Shift+q kill
 bindsym Control+$mod+l exec sh ~/.i3/lock.sh
 
 # volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +15%
-bindsym XF86AudioLowerVolume  exec --no-startup-id pactl set-sink-volume 1 -15%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 1 toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 1 +15%; killall -USR1 i3status"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "pactl set-sink-volume 1 -15%; killall -USR1 i3status"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 1 toggle; killall -USR1 i3status"
 
 # Sreen brightness controls
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
@@ -156,10 +166,15 @@ new_window pixel 1
 new_float pixel 1
 hide_edge_borders both
 # class border backgr indicator
-client.focused #9fbc00 #9fbc00 #111111
-client.unfocused #444444 #444444 #315858
-client.focused_inactive #444444 #444444 #2c2c2f
-client.urgent #383a3b #383a3b #ee0000
+#client.focused #9fbc00 #9fbc00 #111111
+#client.unfocused #444444 #444444 #315858
+#client.focused_inactive #444444 #444444 #2c2c2f
+#client.urgent #383a3b #383a3b #ee0000
+
+client.focused          #002b36 #586e75 #fdf6e3 #268bd2
+client.focused_inactive #002b36 #073642 #839496 #073642
+client.unfocused        #002b36 #073642 #839496 #073642
+client.urgent           #002b36 #dc322f #fdf6e3 #002b36
 
 # next/prev workspace (within current output)
 bindsym $mod+j workspace prev_on_output
@@ -204,6 +219,7 @@ exec --no-startup-id xinput set-prop "ETPS/2 Elantech Touchpad" "Synaptics Scrol
 exec --no-startup-id feh --bg-fill ~/Pictures/dark_wallpaper.jpg
 
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
 exec gnome-settings-daemon 
 exec dropbox start
 
