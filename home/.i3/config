@@ -35,8 +35,9 @@ exec_always --no-startup-id "sleep 2; setxkbmap -variant mac"
 
 # Just set a solid bg
 # exec_always xsetroot -solid "#333333"
+workspace_layout tabbed
 
-exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal; exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html; workspace 2; exec gnome-terminal -x ssh john@localhost; exec pgadmin3; workspace 1'
+exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal; exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html; workspace 2; exec gnome-terminal -x ssh john@localhost; workspace 3; exec pgadmin3; workspace 4; exec thunderbird; workspace 1'
 # Always start a terminal
 #exec i3-sensible-terminal
 
@@ -58,22 +59,24 @@ bindsym $mod+c exec chromium-browser
 bindsym $mod+p exec pgadmin3
 
 # start dev term
-bindsym $mod+m exec gnome-terminal -x ssh john@localhost
+#bindsym $mod+m exec gnome-terminal -x ssh john@localhost
+bindsym $mod+m move workspace to output right
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # lock screen
-bindsym Control+$mod+l exec sh ~/.i3/lock.sh
+#bindsym Control+$mod+l exec sh ~/.i3/lock.sh
+bindsym Control+$mod+l exec dm-tool lock
 
 # volume control
-bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 1 +15%; killall -USR1 i3status"
-bindsym XF86AudioLowerVolume  exec --no-startup-id "pactl set-sink-volume 1 -15%; killall -USR1 i3status"
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 1 +10%; killall -USR1 i3status"
+bindsym XF86AudioLowerVolume  exec --no-startup-id "pactl set-sink-volume 1 -10%; killall -USR1 i3status"
 bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 1 toggle; killall -USR1 i3status"
 
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+# Screen brightness controls
+bindsym $mod+F6 exec --no-startup-id xbacklight -inc 30 # increase screen brightness
+bindsym $mod+F5 exec --no-startup-id xbacklight -dec 30 # decrease screen brightness
 
 # External monitor on/off (work)
 bindsym $mod+Shift+x exec xrandr --output HDMI1 --off
@@ -220,8 +223,13 @@ exec --no-startup-id feh --bg-fill ~/Pictures/dark_wallpaper.jpg
 
 exec --no-startup-id nm-applet
 exec --no-startup-id blueman-applet
-exec gnome-settings-daemon 
+# gsettings set org.gnome.settings-daemon.plugins.cursor active false
+exec --no-startup-id gnome-settings-daemon 
 exec dropbox start
+#exec xcompmgr -c -f -n
+#exec xcompmgr -CcfF -I-.02 -O-.04 -D0001 -t-5 -l-5 -r4.2 -o.82 -m.82
+#exec xcompmgr -CcfF -I-25.0 -O-30.0 -t-5 -l-5 -r4.2 -o.75
+exec xcompmgr -CcfF -I-20 -O-10 -D1 -t-5 -l-5 -r4.2 -o.82
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -242,3 +250,23 @@ bar {
   status_command i3status -c ~/i3status.conf
 #status_command /home/john/.i3/vpn-dev-status.sh
 }
+
+#bar {
+#  position top
+#  colors {
+## Whole color settings
+#    background #000000
+#      statusline #ffffff
+#      separator  #666666
+#
+## Type             border  background font
+#      focused_workspace  #008fff #007fff #ffffff
+#      active_workspace   #333333 #5f676a #ffffff
+#      inactive_workspace #333333 #222222 #888888
+#      urgent_workspace   #aa0000 #990000 #ffffff
+#  }
+#  tray_output none
+#  #status_command i3status -c ~/i3status.conf
+#  status_command i3blocks -c ~/.i3/blocks.conf
+##status_command /home/john/.i3/vpn-dev-status.sh
+#}
