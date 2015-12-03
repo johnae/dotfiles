@@ -69,6 +69,10 @@ bindsym $mod+Shift+q kill
 #bindsym Control+$mod+l exec sh ~/.i3/lock.sh
 bindsym Control+$mod+l exec dm-tool lock
 
+# scratchpad
+bindsym $mod+s scratchpad show
+bindsym $mod+Shift+s move scratchpad
+
 # volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-volume 1 +10%; killall -USR1 i3status"
 bindsym XF86AudioLowerVolume  exec --no-startup-id "pactl set-sink-volume 1 -10%; killall -USR1 i3status"
@@ -226,13 +230,32 @@ exec --no-startup-id blueman-applet
 # gsettings set org.gnome.settings-daemon.plugins.cursor active false
 exec --no-startup-id gnome-settings-daemon 
 exec dropbox start
+exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g = "i3bar"' --config ~/.i3/compton.conf -b
 #exec xcompmgr -c -f -n
 #exec xcompmgr -CcfF -I-.02 -O-.04 -D0001 -t-5 -l-5 -r4.2 -o.82 -m.82
 #exec xcompmgr -CcfF -I-25.0 -O-30.0 -t-5 -l-5 -r4.2 -o.75
-exec xcompmgr -CcfF -I-20 -O-10 -D1 -t-5 -l-5 -r4.2 -o.82
+#exec xcompmgr -CcfF -I-20 -O-10 -D1 -t-5 -l-5 -r4.2 -o.82
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
+#bar {
+#  colors {
+## Whole color settings
+#    background #000000
+#      statusline #ffffff
+#      separator  #666666
+#
+## Type             border  background font
+#      focused_workspace  #008fff #007fff #ffffff
+#      active_workspace   #333333 #5f676a #ffffff
+#      inactive_workspace #333333 #222222 #888888
+#      urgent_workspace   #aa0000 #990000 #ffffff
+#  }
+#  tray_output primary
+#  status_command i3status -c ~/i3status.conf
+##status_command /home/john/.i3/vpn-dev-status.sh
+#}
+
 bar {
   colors {
 # Whole color settings
@@ -247,26 +270,7 @@ bar {
       urgent_workspace   #aa0000 #990000 #ffffff
   }
   tray_output primary
-  status_command i3status -c ~/i3status.conf
+  #status_command i3status -c ~/i3status.conf
+  status_command i3blocks -c ~/.i3/blocks.conf
 #status_command /home/john/.i3/vpn-dev-status.sh
 }
-
-#bar {
-#  position top
-#  colors {
-## Whole color settings
-#    background #000000
-#      statusline #ffffff
-#      separator  #666666
-#
-## Type             border  background font
-#      focused_workspace  #008fff #007fff #ffffff
-#      active_workspace   #333333 #5f676a #ffffff
-#      inactive_workspace #333333 #222222 #888888
-#      urgent_workspace   #aa0000 #990000 #ffffff
-#  }
-#  tray_output none
-#  #status_command i3status -c ~/i3status.conf
-#  status_command i3blocks -c ~/.i3/blocks.conf
-##status_command /home/john/.i3/vpn-dev-status.sh
-#}
