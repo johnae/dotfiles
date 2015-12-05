@@ -1,0 +1,8 @@
+#!/bin/bash
+
+IP=$(curl -s http://myexternalip.com/raw)
+
+case $BLOCK_BUTTON in
+    1) echo "$IP" | xclip -selection clipboard ;;
+    *) echo "$IP" ;;
+esac
