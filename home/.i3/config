@@ -12,10 +12,18 @@
 # alt would be Mod1
 set $mod Mod4
 
+set $bg-color #004b46
+set $border-color $bg-color
+set $inactive-bg-color #001111
+set $text-color #fdf6e3
+set $inactive-text-color #839496
+set $urgent-bg-color #E53935
+
 # Font for window titles. Will also be used by the bar unless a different font
 
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 8
+#font pango:DejaVu Sans Mono 8
+font pango:System San Fransisco Display 10
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -37,7 +45,6 @@ exec_always --no-startup-id "sleep 2; setxkbmap -variant mac"
 # exec_always xsetroot -solid "#333333"
 workspace_layout tabbed
 
-exec --no-startup-id i3-msg 'workspace 1; exec i3-sensible-terminal; exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html; workspace 2; exec gnome-terminal -x ssh john@localhost; workspace 3; exec pgadmin3; workspace 4; exec thunderbird; workspace 1'
 # Always start a terminal
 #exec i3-sensible-terminal
 
@@ -87,7 +94,8 @@ bindsym $mod+Shift+x exec xrandr --output HDMI1 --off
 bindsym $mod+Shift+o exec xrandr --output HDMI1 --mode "1920x1080" --right-of eDP1
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 800 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Fransisco Display 18"
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -143,29 +151,57 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+set $workspace1 "1: Chrome "
+set $workspace2 "2: Thunderbird "
+set $workspace3 "3: Dev "
+set $workspace4 "4: PgAdmin "
+set $workspace5 "5: Terminal "
+set $workspace6 "6: Desktop "
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
 bindsym $mod+Shift+9 move container to workspace 9
 bindsym $mod+Shift+0 move container to workspace 10
+
+# Use specific monitor for workspaces
+workspace $workspace2 output HDMI1
+workspace $workspace3 output HDMI1
+workspace $workspace4 output HDMI1
+workspace $workspace6 output HDMI1
+
+# Fix apps to workspaces
+
+assign [window_role="browser"] $workspace1
+assign [window_role="dev"] $workspace3
+assign [class="Pgadmin3"] $workspace4
+assign [window_role="terminal"] $workspace5
+assign [class="Thunderbird"] $workspace2
+
+# Start applications
+exec gnome-terminal --role=dev -x ssh john@localhost
+exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html
+exec gnome-terminal --role=terminal
+exec pgadmin3
+exec thunderbird
 
 workspace_auto_back_and_forth yes
 
@@ -178,10 +214,17 @@ hide_edge_borders both
 #client.focused_inactive #444444 #444444 #2c2c2f
 #client.urgent #383a3b #383a3b #ee0000
 
-client.focused          #002b36 #586e75 #fdf6e3 #268bd2
-client.focused_inactive #002b36 #073642 #839496 #073642
-client.unfocused        #002b36 #073642 #839496 #073642
-client.urgent           #002b36 #dc322f #fdf6e3 #002b36
+# class                 border    background   text      indicator
+#client.focused          #002b36   #586e75      #fdf6e3   #268bd2
+#client.focused_inactive #002b36   #073642      #839496   #073642
+#client.unfocused        #002b36   #073642      #839496   #073642
+#client.urgent           #002b36   #dc322f      #fdf6e3   #002b36
+
+# class                 border              background          text                    indicator
+client.focused          $bg-color           $bg-color           $text-color             #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color  $inactive-text-color    #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color    $text-color             #00ff00
 
 # next/prev workspace (within current output)
 bindsym $mod+j workspace prev_on_output
@@ -257,17 +300,18 @@ exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g
 #}
 
 bar {
+  font pango:System San Fransisco Display 10
   colors {
-# Whole color settings
-    background #000000
+      # Whole color settings
+      background #000000
       statusline #ffffff
       separator  #666666
 
-# Type             border  background font
-      focused_workspace  #008fff #007fff #ffffff
-      active_workspace   #333333 #5f676a #ffffff
-      inactive_workspace #333333 #222222 #888888
-      urgent_workspace   #aa0000 #990000 #ffffff
+      # Type                    border                  background              font
+      focused_workspace         $bg-color               $bg-color               $text-color
+      active_workspace          #333333                 #5f676a                 $text-color
+      inactive_workspace        $inactive-bg-color      $inactive-bg-color      $inactive-text-color
+      urgent_workspace          $urgent-bg-color        $urgent-bg-color        $text-color
   }
   tray_output primary
   #status_command i3status -c ~/i3status.conf
