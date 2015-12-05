@@ -193,13 +193,13 @@ workspace $workspace6 output HDMI1
 assign [window_role="browser"] $workspace1
 assign [window_role="dev"] $workspace3
 assign [class="Pgadmin3"] $workspace4
-assign [window_role="terminal"] $workspace5
+assign [window_role="eterminal"] $workspace5
 assign [class="Thunderbird"] $workspace2
 
 # Start applications
 exec gnome-terminal --role=dev -x ssh john@localhost
 exec chromium-browser --allow-file-access --allow-file-access-from-files Dropbox/1Password.agilekeychain/1Password.html
-exec gnome-terminal --role=terminal
+exec gnome-terminal --role=eterminal
 exec pgadmin3
 exec thunderbird
 
