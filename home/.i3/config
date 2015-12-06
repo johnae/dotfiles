@@ -18,12 +18,12 @@ set $inactive-bg-color #001111
 set $text-color #fdf6e3
 set $inactive-text-color #839496
 set $urgent-bg-color #E53935
+set $font pango:System San Fransisco Display Bold 9
 
 # Font for window titles. Will also be used by the bar unless a different font
 
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-font pango:System San Fransisco Display 10
+font $font
 # Before i3 v4.8, we used to recommend this one as the default:
 # font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
 # The font above is very space-efficient, that is, it looks good, sharp and
@@ -235,7 +235,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec "i3-nagbar -f $font -t warning -m 'Do you really want to exit i3?' -b 'Yes, exit i3' 'i3-msg exit'"
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -300,7 +300,6 @@ exec --no-startup-id compton --opacity-rule '100:window_type = "dock" && class_g
 #}
 
 bar {
-  font pango:System San Fransisco Display 10
   colors {
       # Whole color settings
       background #000000
