@@ -14,6 +14,11 @@ off() {
   fi
 }
 
+left_of() {
+  OFFSET=$(xrandr | grep HDMI1 | awk -F'+' '{print $2}')
+  [ "$OFFSET" = "0" ]
+}
+
 if [ "$BLOCK_BUTTON" = "1" ]; then
   CMD="toggle"
 fi
@@ -35,7 +40,11 @@ elif [ "$CMD" = "off" ]; then
 fi
 
 if on; then
-  echo "ON"
+  if left_of; then
+    echo "<-"
+  else
+    echo "->"
+  fi
 else
   echo "OFF"
 fi
