@@ -1,0 +1,41 @@
+#!/bin/sh
+
+CMD="$1"
+
+on() {
+  xrandr -q | grep -C 20 HDMI1 | grep -P '\d+mm x \d+mm' 2>&1 >/dev/null
+}
+
+off() {
+  if on; then
+    false
+  else
+    true
+  fi
+}
+
+if [ "$BLOCK_BUTTON" = "1" ]; then
+  CMD="toggle"
+fi
+
+if [ "$CMD" = "toggle" ]; then
+  if off; then
+    CMD="right"
+  else
+    CMD="off"
+  fi
+fi
+
+if [ "$CMD" = "right" ]; then
+  xrandr --output HDMI1 --mode "1920x1080" --right-of eDP1 2>/dev/null
+elif [ "$CMD" = "left" ]; then
+  xrandr --output HDMI1 --mode "1920x1080" --left-of eDP1 2>/dev/null
+elif [ "$CMD" = "off" ]; then
+  xrandr --output HDMI1 --off 2>/dev/null
+fi
+
+if on; then
+  echo "ON"
+else
+  echo "OFF"
+fi
