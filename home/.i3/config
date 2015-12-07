@@ -172,10 +172,15 @@ bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
+# Dev
 bindsym $mod+Shift+d workspace $workspace3
+# Chrome
 bindsym $mod+Shift+b workspace $workspace1
+# Mail
 bindsym $mod+Shift+m workspace $workspace2
+# Db
 bindsym $mod+Shift+p workspace $workspace4
+# Local terminal
 bindsym $mod+Shift+t workspace $workspace5
 
 # move focused container to workspace
