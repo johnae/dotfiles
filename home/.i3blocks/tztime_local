@@ -2,15 +2,7 @@
 
 DATE=$(date +"%h-%d %H:%M")
 
-simplecal_toggle() {
-  if ps aux | grep gsimplecal | grep -v grep > /dev/null; then
-    killall gsimplecal
-  else
-    exec gsimplecal &
-  fi
-}
-
 case $BLOCK_BUTTON in
-  1) echo "$DATE"; simplecal_toggle;;
+  1) echo "$DATE"; (gsimplecal &> /dev/null &);;
   *) echo "$DATE"
 esac
