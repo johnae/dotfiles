@@ -65,6 +65,8 @@ bindsym $mod+F5 exec --no-startup-id xbacklight -dec 30 # decrease screen bright
 # External monitor on/off (work)
 #bindsym $mod+Shift+o exec "~/.i3blocks/external_display right; pkill -RTMIN+11 i3blocks"
 #bindsym $mod+Shift+x exec "~/.i3blocks/external_display off; pkill -RTMIN+11 i3blocks"
+bindsym $mod+Shift+o exec "~/.i3blocks/external_display right"
+bindsym $mod+Shift+x exec "~/.i3blocks/external_display off"
 
 # start rofi (as a program launcher)
 bindsym $mod+d exec rofi -fuzzy -show run -lines 3 -eh 2 -padding 300 -fullscreen -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Fransisco Display 18"
@@ -180,7 +182,7 @@ exec pgadmin3
 exec chromium-browser --user-data-dir=/home/john/.config/chromium-private --app=https://inbox.google.com/u/1/
 exec chromium-browser --user-data-dir=/home/john/.config/chromium-private --app=https://inbox.google.com/u/0/
 exec chromium-browser --user-data-dir=/home/john/.config/chromium-private --app=https://gitter.im/AdTEN
-for_window [title="^Inbox - john*"] move workspace number 2
+for_window [title="^Inbox - john.*$"] move workspace number 2
 for_window [title="^AdTEN - Gitter$"] move window to scratchpad, scratchpad show, resize set 1800 1000, move position center
 exec ~/Local/bin/adten-keepass
 exec ~/Local/bin/johnae-keepass
