@@ -71,3 +71,10 @@ if test -d ~/.profile.local.d ; then for profile in ~/.profile.local.d/*.sh ; do
 ## for mosh
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
+
+#if [ "$0" = "/usr/sbin/lightdm-session" -a "$DESKTOP_SESSION" = "i3" ]; then
+#  export $(gnome-keyring-daemon -s)
+#fi
+
+source ~/.xsh
+

@@ -94,3 +94,7 @@ eval "$(direnv hook zsh)"
 export PS1=$PS1'$( [ -n "$TMUX" ] && tmux rename-window $(basename $(tmux display-message -p -F "#{pane_current_path}")))'
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+
+source ~/.xsh
+
